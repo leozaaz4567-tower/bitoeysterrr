@@ -1,0 +1,274 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://i.redd.it/uwwte8wps4h91.gif);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh; /* ใช้ dvh เพื่อให้พอดีจอมือถือเวลาแถบ URL เลื่อนขึ้นลง */
+    margin: 0;
+    padding: 15px;
+    font-family: 'Mali', cursive, sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    overflow-x: hidden;
+}
+
+.containner {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+}
+
+.containner h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    word-break: break-word;
+}
+
+.bortor {
+    width: 300px;
+    max-width: 85%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    margin: 15px 0;
+}
+
+.btngroup {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnn {
+    position: relative;
+    font-size: 20px;
+    color: aliceblue;
+    width: 150px;
+    height: 50px;
+    border: 0px;
+    background-color: rgb(255, 115, 0);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* ลบกรอบสีฟ้าเวลาแตะบนมือถือ */
+}
+
+.btnn:hover {
+    transform: translate(-6px, -6px);
+}
+.btnn:hover::after {
+    transform: translate(6px, 6px);
+}
+.btnn:hover::before {
+    transform: translate(3px, 3px);
+}
+
+/* เอฟเฟกต์ตอนใช้นิ้วกดบนมือถือ */
+.btnn:active {
+    transform: scale(0.95);
+}
+
+.btnn::after, .btnn::before {
+    content: "";
+    position: absolute;
+    opacity: 0.3;
+    border-radius: inherit;
+    background-color: rgb(255, 115, 0);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: all 0.25s ease;
+}
+
+/* --- ส่วนของหน้าเค้ก --- */
+.hint-text {
+    font-size: 14px;
+    color: #ffd1a8;
+    margin-bottom: 25px;
+}
+
+.cake-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+
+.candle {
+    width: 14px;
+    height: 45px;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 5px,
+        #ff6b6b 5px,
+        #ff6b6b 10px
+    );
+    border-radius: 3px;
+    position: relative;
+}
+
+.flame {
+    width: 18px;
+    height: 28px;
+    background: radial-gradient(circle, #fff 10%, #ffeb3b 40%, #ff9800 90%);
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    top: -30px;
+    left: -2px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff9800, 0 0 30px #ffeb3b;
+    animation: flicker 0.6s infinite alternate;
+    transition: opacity 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ขยายพื้นที่รับสัมผัสให้นิ้วจิ้มดับเทียนได้ง่ายขึ้นบนมือถือ */
+.flame::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: -18px;
+    width: 54px;
+    height: 58px;
+}
+
+.flame.blown {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1) rotate(-2deg); }
+    100% { transform: scale(1.1) rotate(2deg); }
+}
+
+.cake-top {
+    width: 180px;
+    height: 25px;
+    background-color: #fff0f5;
+    border-radius: 15px 15px 5px 5px;
+    z-index: 2;
+    box-shadow: 0 3px 0 #ffc0cb;
+}
+
+.cake-body {
+    width: 170px;
+    height: 70px;
+    background-color: #ff85a2;
+    border-radius: 0 0 10px 10px;
+    margin-top: -5px;
+}
+
+.plate {
+    width: 220px;
+    height: 12px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+/* กล่องข้อความอวยพร */
+.wish-card {
+    display: none;
+    background: rgba(0, 0, 0, 0.72);
+    border: 2px solid rgb(255, 115, 0);
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    animation: popUp 0.6s ease forwards;
+}
+
+.wish-card h3 {
+    color: #ffb74d;
+    margin-bottom: 12px;
+    font-size: 1.35rem;
+}
+
+.wish-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+@keyframes popUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   Responsive สำหรับหน้าจอมือถือ (กว้างไม่เกิน 600px)
+   ========================================= */
+@media (max-width: 600px) {
+    .containner {
+        padding: 10px 5px;
+    }
+
+    .containner h4 {
+        font-size: 1.1rem;
+    }
+
+    .containner h1 {
+        font-size: 2rem;
+    }
+
+    .containner h2 {
+        font-size: 1.4rem;
+    }
+
+    .bortor {
+        width: 240px;
+    }
+
+    .btnn {
+        width: 140px;
+        height: 46px;
+        font-size: 18px;
+    }
+
+    /* ปิด hover ลอยตัวบนมือถือเพื่อไม่ให้ปุ่มค้างเวลาแตะ */
+    .btnn:hover {
+        transform: none;
+    }
+    .btnn:hover::after, .btnn:hover::before {
+        transform: none;
+    }
+
+    .wish-card {
+        padding: 18px 14px;
+    }
+
+    .wish-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .wish-card p {
+        font-size: 0.9rem;
+    }
+}

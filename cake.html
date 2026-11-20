@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Wish! - Bitoeyster</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="containner">
+        <h2 id="title-text">อธิษฐานเยยงับ</h2>
+        <p class="hint-text" id="hint">(คลิกที่ไฟบนเทียน)</p>
+
+        <!-- ตัวเค้กแบบทำมือด้วย CSS -->
+        <div class="cake-box">
+            <div class="candle">
+                <div class="flame" id="flame" onclick="blowCandle()"></div>
+            </div>
+            <div class="cake-top"></div>
+            <div class="cake-body"></div>
+            <div class="plate"></div>
+        </div>
+
+        <!-- กล่องคำอวยพร (ซ่อนไว้ก่อน รอเป่าเทียนเสร็จค่อยโชว์) -->
+        <div class="wish-card" id="wish-card" style="color: aliceblue;">
+            <h3>สุขสันต์วันเกิดนะอั่ยอ้วน 🎂</h3>
+            <p>
+                มีคนแถวนี้โตขึ้นอีกปีแล้วว พี่ขอให้น้องมีความสุขมากๆ <br>
+                ขอให้วันเกิดปีนี้เป็นวันที่มีความสุข แล้วก็ใกล้จะปีใหม่แย้ว <br>
+                ขอให้น้องยิ้มเยอะๆ ร่างกายแข็งแรง ขอให้สมหวังกับสิ่งที่คิด <br>
+                เป็นที่รักของทุกคน มีแต่คนใจดีๆนะ พี่ยังอยู่ตรงนี้ <br>
+                ข้างๆน้องเสมอ และปีใหม่ก็ขอให้เจอสิ่งดีๆ ใหม่ๆ <br>
+                มีโอกาสใหม่ๆ เข้ามาในชีวิต <br>
+                น้องเป็นคนเก่ง เป็นเด็กน่ารัก ไม่ว่าน้องจะหวังอะไรไว้ <br>
+                พี่เชื่อว่าน้องจะต้องทำได้ <br>
+                Happy Birthday นะ รักน้องนะคะน้องใบเตย 🤍<br>
+                คิดถึงน้องมากๆนะ <br>
+                จากพี่เลโอ.
+            </p>
+            <button class="btnn mt-2" onclick="goBack()">กลับหน้าแรก</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
