@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="containner">
-        <h2 id="title-text">อธิษฐานเยยงับ</h2>
-        <p class="hint-text" id="hint">(คลิกที่ไฟบนเทียน)</p>
+        <button class="music-btn" id="music-btn" onclick="toggleMusic()">🎵 เปิดเพลง</button>
 
-        <!-- ตัวเค้กแบบทำมือด้วย CSS -->
+        <h2 id="title-text">อธิษฐานเยยงับ</h2>
+        <p class="hint-text" id="hint">(กดเปิดไมค์เป่า หรือคลิกที่ไฟบนเทียนก็ได้งับ)</p>
+
+        <button class="mic-btn" id="mic-btn" onclick="startMic()">🎤 เปิดไมค์เป่าเทียน</button>
+
         <div class="cake-box">
             <div class="candle">
                 <div class="flame" id="flame" onclick="blowCandle()"></div>
@@ -23,7 +27,6 @@
             <div class="plate"></div>
         </div>
 
-        <!-- กล่องคำอวยพร (ซ่อนไว้ก่อน รอเป่าเทียนเสร็จค่อยโชว์) -->
         <div class="wish-card" id="wish-card" style="color: aliceblue;">
             <h3>สุขสันต์วันเกิดนะอั่ยอ้วน 🎂</h3>
             <p>
@@ -39,7 +42,22 @@
                 คิดถึงน้องมากๆนะ <br>
                 จากพี่เลโอ.
             </p>
-            <button class="btnn mt-2" onclick="goBack()">กลับหน้าแรก</button>
+
+            <div class="gift-box" id="gift-box" onclick="openGift()">
+                <div class="gift-emoji">🎁</div>
+                <div>กดเปิดของขวัญตรงนี้งับ</div>
+            </div>
+
+            <div class="mem-box" id="mem-box">
+                <img id="mem-img" src="images/bortor.jpg" alt="รูปความทรงจำ">
+                <p id="mem-text" class="mt-2 mb-2"></p>
+                <div class="d-flex justify-content-center gap-2">
+                    <button class="btn btn-sm btn-outline-warning" onclick="prevPic()">◀ ก่อนหน้า</button>
+                    <button class="btn btn-sm btn-outline-warning" onclick="nextPic()">ถัดไป ▶</button>
+                </div>
+            </div>
+
+            <button class="btnn mt-3" onclick="goBack()">กลับหน้าแรก</button>
         </div>
     </div>
 
