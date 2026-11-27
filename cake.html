@@ -43,21 +43,51 @@
                 จากพี่เลโอ.
             </p>
 
-            <div class="gift-box" id="gift-box" onclick="openGift()">
+            <div class="gift-box" id="gift-box" onclick="startQuiz()">
                 <div class="gift-emoji">🎁</div>
-                <div>กดเปิดของขวัญตรงนี้งับ</div>
+                <div>ตอบคำถาม 5 ข้อ เพื่อเปิดของขวัญงับ</div>
             </div>
 
+            <div class="quiz-box" id="quiz-box">
+                <div class="quiz-step" id="quiz-step">ข้อที่ 1 / 5</div>
+                <p class="quiz-q" id="quiz-q"></p>
+                <input type="text" class="quiz-input" id="quiz-input" placeholder="พิมพ์คำตอบตรงนี้เยย...">
+                <p class="quiz-err" id="quiz-err"></p>
+                <button class="btn btn-warning btn-sm mt-2 px-4" onclick="checkQuiz()">ส่งคำตอบ</button>
+            </div>
+
+            <!-- กล่องของขวัญ (แสดงทีละชิ้น) -->
             <div class="mem-box" id="mem-box">
-                <img id="mem-img" src="images/bortor.jpg" alt="รูปความทรงจำ">
-                <p id="mem-text" class="mt-2 mb-2"></p>
-                <div class="d-flex justify-content-center gap-2">
-                    <button class="btn btn-sm btn-outline-warning" onclick="prevPic()">◀ ก่อนหน้า</button>
-                    <button class="btn btn-sm btn-outline-warning" onclick="nextPic()">ถัดไป ▶</button>
+                <h5 class="text-warning mb-3">🎉 เก่งมากก อ่ะ เอาของขวัญไปเยย</h5>
+
+                <!-- หน้าที่ 1: ของขวัญชิ้นที่ 1 -->
+                <div class="gift-section" id="gift-1">
+                    <div class="gift-tag">📸 ของขวัญชิ้นที่ 1</div>
+                    <img id="mem-img" src="images/bortor.jpg" alt="รูปความทรงจำ">
+                    <p id="mem-text" class="mt-2 mb-2"></p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-sm btn-outline-warning" onclick="prevPic()">◀ ก่อนหน้า</button>
+                        <button class="btn btn-sm btn-outline-warning" onclick="nextPic()">ถัดไป ▶</button>
+                    </div>
+                    <hr class="my-3" style="border-color: rgba(255,255,255,0.2);">
+                    <button class="btn btn-warning btn-sm px-3" onclick="goGift2()">ไปดูของขวัญชิ้นที่ 2 🎁 ▶</button>
+                </div>
+
+                <!-- หน้าที่ 2: ของขวัญชิ้นที่ 2 -->
+                <div class="gift-section" id="gift-2" style="display: none;">
+                    <div class="gift-tag">🎬 ของขวัญชิ้นที่ 2</div>
+                    <button class="btn btn-outline-light btn-sm mt-2" id="show-vid-btn" onclick="openVideo()">▶️ กดเปิดดูวิดีโองับ</button>
+                    <div class="video-wrap" id="video-wrap">
+                        <video id="gift-video" controls playsinline>
+                            <source src="images/hbd-video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <hr class="my-3" style="border-color: rgba(255,255,255,0.2);">
+                    <button class="btn btn-outline-light btn-sm px-3" onclick="goGift1()">◀ กลับไปดูของขวัญชิ้นที่ 1</button>
                 </div>
             </div>
 
-            <button class="btnn mt-3" onclick="goBack()">กลับหน้าแรก</button>
+            <button class="btnn mt-4" onclick="goBack()">กลับหน้าแรก</button>
         </div>
     </div>
 

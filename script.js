@@ -1,4 +1,11 @@
-// ใส่รูปและข้อความเพิ่มตรงนี้ได้เลย
+const quizList = [
+    { q: "ข้อ 1: วันแรกที่เจอกันเราไปกินอะไรกัน?", a: ["กระเพรา", "ผัดกระเพรา", "กะเพรา", "ผัดกะเพรา"] },
+    { q: "ข้อ 2: น้องจะเลือกอะไรระหว่าง โค๊ก กับ โกโก้ ?", a: ["โกโก้", "โกโก", "โก้โก้", "โกโก่", "โก่โก่"] },
+    { q: "ข้อ 3: น้องเกิดวันอะไร(ที่ไม่ใช่วันที่)?", a: ["อังคาร", "วันอังคาร"] },
+    { q: "ข้อ 4: น้องว่าใครสวยที่สุด (พิมพ์ชื่อนะ)?", a: ["ใบเตย", "น้องใบเตย", "บอตอ", "น้อง"] },
+    { q: "ข้อ 5: พร้อมจะดูของขวัญหรือยัง พร้อม / ไม่พร้อม?", a: ["พร้อม"] }
+];
+
 const pics = [
     { src: "images/h1.JPG", text: "จำได้มั้ยรูปนี้ เป็นวันแรกที่เจอกัน🤍" },
     { src: "images/h2.JPG", text: "วันแรกเราไปหม่ำกระเพรากันน 🍳" },
@@ -12,6 +19,7 @@ const pics = [
     { src: "images/h9.JPG", text: "ถ้าเป็นไปได้ อยากกลับมาหากันนะ 🤍💗" }
 ];
 
+let quizIndex = 0;
 let picIndex = 0;
 let blown = false;
 let musicPlaying = false;
@@ -60,7 +68,6 @@ function blowCandle() {
     }, 500);
 }
 
-// เปิดไมค์เป่าเทียน
 async function startMic() {
     const micBtn = document.getElementById("mic-btn");
     try {
@@ -94,18 +101,76 @@ async function startMic() {
         }
         listen();
     } catch (e) {
-        alert("เปิดไมค์ไม่ได้งับ ลองเอานิ้วจิ้มที่ไฟบนเทียนแทนนะ!");
+        alert("เปิดไมค์ไม่ได้ลองเอานิ้วจิ้มที่ไฟบนเทียนแทนนะ");
     }
 }
 
-// เปิดกล่องของขวัญดูรูป
-function openGift() {
+function startQuiz() {
     document.getElementById("gift-box").style.display = "none";
+    document.getElementById("quiz-box").style.display = "block";
+    showQuiz();
+
+    const input = document.getElementById("quiz-input");
+    input.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") {
+            checkQuiz();
+        }
+    });
+}
+
+function showQuiz() {
+    document.getElementById("quiz-step").innerText = `ข้อที่ ${quizIndex + 1} / ${quizList.length}`;
+    document.getElementById("quiz-q").innerText = quizList[quizIndex].q;
+    document.getElementById("quiz-input").value = "";
+    document.getElementById("quiz-err").innerText = "";
+}
+
+function checkQuiz() {
+    const userAns = document.getElementById("quiz-input").value.trim().toLowerCase();
+    const rightAnsList = quizList[quizIndex].a.map(item => item.toLowerCase());
+
+    if (userAns === "") {
+        document.getElementById("quiz-err").innerText = "พิมพ์คำตอบก่อนสิอ้วน";
+        return;
+    }
+
+    if (rightAnsList.includes(userAns)) {
+        quizIndex++;
+        if (quizIndex < quizList.length) {
+            showQuiz();
+        } else {
+            unlockGifts();
+        }
+    } else {
+        document.getElementById("quiz-err").innerText = "ยังไม่ถูกกอ้วนน ลองนึกดูใหม่🤔";
+    }
+}
+
+function unlockGifts() {
+    document.getElementById("quiz-box").style.display = "none";
     document.getElementById("mem-box").style.display = "block";
-    showPic();
+    goGift1();
 
     if (typeof confetti === "function") {
-        confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+        confetti({ particleCount: 80, spread: 70, origin: { y: 0.7 } });
+    }
+}
+
+function goGift1() {
+    const vid = document.getElementById("gift-video");
+    if (vid) vid.pause();
+
+    document.getElementById("gift-2").style.display = "none";
+    document.getElementById("gift-1").style.display = "block";
+    showPic();
+}
+
+function goGift2() {
+    document.getElementById("gift-1").style.display = "none";
+    document.getElementById("gift-2").style.display = "block";
+
+    if (typeof confetti === "function") {
+        confetti({ particleCount: 60, spread: 60, origin: { y: 0.7 } });
     }
 }
 
@@ -124,7 +189,14 @@ function prevPic() {
     showPic();
 }
 
-// เพลง Happy Birthday กล่องดนตรี
+function openVideo() {
+    stopMusic();
+    document.getElementById("show-vid-btn").style.display = "none";
+    document.getElementById("video-wrap").style.display = "block";
+    const vid = document.getElementById("gift-video");
+    vid.play();
+}
+
 const songNotes = [
     [261.63, 0.3], [261.63, 0.3], [293.66, 0.6], [261.63, 0.6], [349.23, 0.6], [329.63, 1.0],
     [261.63, 0.3], [261.63, 0.3], [293.66, 0.6], [261.63, 0.6], [392.00, 0.6], [349.23, 1.0],

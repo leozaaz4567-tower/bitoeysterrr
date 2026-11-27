@@ -220,7 +220,7 @@ body {
 
 .wish-card {
     display: none;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.78);
     border: 2px solid rgb(255, 115, 0);
     border-radius: 15px;
     padding: 20px;
@@ -260,12 +260,68 @@ body {
     to { transform: rotate(8deg); }
 }
 
+.quiz-box {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid #ffb74d;
+    border-radius: 12px;
+    animation: popUp 0.4s ease forwards;
+}
+
+.quiz-step {
+    font-size: 13px;
+    color: #ffb74d;
+    margin-bottom: 6px;
+}
+
+.quiz-q {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.quiz-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ffb74d;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    font-family: 'Mali', cursive, sans-serif;
+    outline: none;
+}
+
+.quiz-err {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 0;
+    min-height: 18px;
+}
+
 .mem-box {
     display: none;
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid rgba(255,255,255,0.2);
     animation: popUp 0.5s ease forwards;
+}
+
+.gift-section {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 12px;
+    border-radius: 12px;
+    animation: popUp 0.4s ease forwards;
+}
+
+.gift-tag {
+    font-size: 14px;
+    color: #ffd1a8;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .mem-box img {
@@ -275,6 +331,19 @@ body {
     object-fit: cover;
     border-radius: 12px;
     border: 2px solid #ffb74d;
+}
+
+.video-wrap {
+    display: none;
+    margin-top: 10px;
+}
+
+.video-wrap video {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    border: 2px solid #ffb74d;
+    background: black;
 }
 
 @keyframes popUp {
